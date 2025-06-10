@@ -1,0 +1,21 @@
+﻿@model Actividad2LengProg3.Models.EstudianteViewModel
+
+@{
+    ViewBag.Title = "Confirmar Eliminación";
+}
+
+<h2>¿Estás seguro que deseas eliminar este estudiante?</h2>
+
+<div>
+    <p><strong>Nombre:</strong> @Model.NombreCompleto</p>
+    <p><strong>Matrícula:</strong> @Model.Matricula</p>
+    <p><strong>Carrera:</strong> @Model.Carrera</p>
+    <p><strong>Correo:</strong> @Model.CorreoInstitucional</p>
+</div>
+
+@using (Html.BeginForm("EliminarConfirmado", "Estudiantes", FormMethod.Post))
+{
+    @Html.HiddenFor(m => m.Matricula)
+    <button type="submit" class="btn btn-danger">Sí, eliminar</button>
+    <a class="btn btn-secondary" href="@Url.Action("Lista", "Estudiantes")">Cancelar</a>
+}

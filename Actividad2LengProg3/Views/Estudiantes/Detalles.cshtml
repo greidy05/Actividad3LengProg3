@@ -1,0 +1,19 @@
+﻿@model Actividad2LengProg3.Models.EstudianteViewModel
+
+<h2>Detalles del Estudiante</h2>
+
+<table class="table">
+    <tr><th>Matrícula</th><td>@Model.Matricula</td></tr>
+    <tr><th>Nombre Completo</th><td>@Model.NombreCompleto</td></tr>
+    <tr><th>Carrera</th><td>@Model.Carrera</td></tr>
+    <tr><th>Correo Institucional</th><td>@Model.CorreoInstitucional</td></tr>
+    <tr><th>Teléfono</th><td>@Model.Telefono</td></tr>
+    <tr><th>Fecha de Nacimiento</th><td>@Model.FechaNacimiento.ToShortDateString()</td></tr>
+    <tr><th>Género</th><td>@Model.Genero</td></tr>
+    <tr><th>Turno</th><td>@Model.Turno</td></tr>
+    <tr><th>Tipo de Ingreso</th><td>@Model.TipoIngreso</td></tr>
+    <tr><th>Está Becado</th><td>@(Model.EstaBecado ? "Sí" : "No")</td></tr>
+    <tr><th>Porcentaje de Beca</th><td>@Model.PorcentajeBeca %</td></tr>
+</table>
+
+<a class="btn btn-primary" asp-action="Lista">Volver a la Lista</a>

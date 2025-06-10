@@ -1,0 +1,61 @@
+﻿@model List<Actividad2LengProg3.Models.EstudianteViewModel>
+
+@{
+    ViewBag.Title = "Lista de Estudiantes Registrados";
+}
+
+<h2>Lista de Estudiantes Registrados</h2>
+
+<table class="table table-bordered table-striped">
+    <thead class="thead-dark">
+        <tr>
+            <th>Nombre completo</th>
+            <th>Matrícula</th>
+            <th>Carrera</th>
+            <th>Correo</th>
+            <th>Teléfono</th>
+            <th>Fecha Nacimiento</th>
+            <th>Género</th>
+            <th>Turno</th>
+            <th>Tipo Ingreso</th>
+            <th>Beca</th>
+            <th>Porcentaje</th>
+            <th>Acciones</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var e in Model)
+        {
+            <tr>
+                <td>@e.NombreCompleto</td>
+                <td>@e.Matricula</td>
+                <td>@e.Carrera</td>
+                <td>@e.CorreoInstitucional</td>
+                <td>@e.Telefono</td>
+                <td>@e.FechaNacimiento.ToShortDateString()</td>
+                <td>@e.Genero</td>
+                <td>@e.Turno</td>
+                <td>@e.TipoIngreso</td>
+                <td>@(e.EstaBecado ? "Sí" : "No")</td>
+                <td>@(e.PorcentajeBeca.HasValue ? e.PorcentajeBeca + "%" : "N/A")</td>
+                <td>
+                    @Html.ActionLink("Editar", "Editar", new { matricula = e.Matricula }, new { @class = "btn btn-sm btn-warning" })
+                    @Html.Raw(" ")
+                    @Html.ActionLink("Eliminar", "Eliminar", new { matricula = e.Matricula }, new { @class = "btn btn-sm btn-danger" })
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<form asp-action="Buscar" method="get" class="form-inline mb-3">
+    <div class="form-group">
+        <label for="matricula">Buscar por Matrícula:</label>
+        <input type="text" name="matricula" class="form-control mx-2" required />
+        <button type="submit" class="btn btn-success">Buscar</button>
+    </div>
+</form>
+
+
+<a class="btn btn-primary" href="@Url.Action("Index", "Estudiantes")">Registrar otro estudiante</a>
+
